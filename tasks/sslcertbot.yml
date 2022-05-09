@@ -1,7 +1,8 @@
 ---
+
 - name: register the ssl cert names to use
   set_fact:
-    _certbot_domains: "{{ certbot__domains | default([ansible_fqdn]) }}"
+    _certbot_domains: "{{ certbot_domains | default([ansible_fqdn]) }}"
 
 - name: install required packages
   apt:
@@ -24,18 +25,18 @@
 
 - name: Edit ssl cert path
   lineinfile:
-          path: "{{ nginx_config_path }}" 
+          path: "{{ nginx_config_path }}"
           regexp: "SSL_CERTIFICATE_PATH"
           line: "  ssl_certificate /etc/letsencrypt/live/{{ _certbot_domains | first }}/fullchain.pem;"
-  notify: 
+  notify:
       restart-nginx
   become: yes
 
 - name: Edit ssl key path
   lineinfile:
-          path: "{{ nginx_config_path }}" 
+          path: "{{ nginx_config_path }}"
           regexp: "SSL_KEY_PATH"
-          line: "  ssl_certificate /etc/letsencrypt/live/{{ _certbot_domains | first }}/privkey.pem;"
-  notify: 
+          line: "  ssl_certificate_key /etc/letsencrypt/live/{{ _certbot_domains | first }}/privkey.pem;"
+  notify:
       restart-nginx
   become: yes
