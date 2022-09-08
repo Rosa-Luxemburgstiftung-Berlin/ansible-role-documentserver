@@ -25,7 +25,7 @@
     - not (use_letsencrypt | default(false))
 
 - name: Include Let's Encrypt SSL config if needed
-  include_tasks: sslcertbot.yml
+  ansible.builtin.include_tasks: sslcertbot.yml
   when:
     - proto == "https"
     - use_letsencrypt | default(false)
