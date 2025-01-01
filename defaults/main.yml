@@ -1,3 +1,4 @@
+---
 db_server_host: localhost
 db_server_name: onlyoffice
 db_server_user: onlyoffice
@@ -15,15 +16,18 @@ rabbitmq_server_user: guest
 rabbitmq_server_pass: guest
 rabbitmq_server_vpath: /
 
-jwt_enabled: false
-jwt_secret: secret
-jwt_header: Authorization
+jwt_enabled: true
+jwt_secret: ""
+jwt_header: ""
 
 proto: http
 key_file: "~/certs/tls.key"
 cert_file: "~/certs/tls.crt"
 cluster_mode: false
 start_example: false
+
+package_url: ""
+ds_port: ""
 
 # configure info page allow IP / CIDR network
 ds_info_allow: 127.0.0.1
