@@ -29,7 +29,7 @@
           regexp: "SSL_CERTIFICATE_PATH"
           line: "  ssl_certificate /etc/letsencrypt/live/{{ _certbot_domains | first }}/fullchain.pem;"
   notify:
-      restart-nginx
+      Restart-nginx
   become: yes
 
 - name: Edit ssl key path
@@ -38,5 +38,5 @@
           regexp: "SSL_KEY_PATH"
           line: "  ssl_certificate_key /etc/letsencrypt/live/{{ _certbot_domains | first }}/privkey.pem;"
   notify:
-      restart-nginx
+      Restart-nginx
   become: yes
