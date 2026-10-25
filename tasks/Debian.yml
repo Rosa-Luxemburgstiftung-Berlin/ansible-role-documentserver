@@ -45,7 +45,7 @@
     value: "{{ ds_port }}"
     vtype: string
   when:
-    - ds_port
+    - ds_port is defined
 
 - name: Set up db host name
   ansible.builtin.debconf:
@@ -95,7 +95,7 @@
     value: "{{ jwt_secret }}"
     vtype: string
   when:
-    - jwt_secret
+    - jwt_secret is defined
 
 - name: Set up JWT Header
   ansible.builtin.debconf:
@@ -104,7 +104,7 @@
     value: "{{ jwt_header }}"
     vtype: string
   when:
-    - jwt_header
+    - jwt_header is defined
 
 - name: Install documentserver
   ansible.builtin.apt:
@@ -122,7 +122,7 @@
 - name: Set up redis port number
   ansible.builtin.shell: '{{ json }} -I -e ''this.services.CoAuthoring.redis.port  = "{{ redis_server_port }}"'''
   when:
-    - redis_server_port
+    - redis_server_port is defined
     - is_nonfree_package | bool
   notify: Restart-ds
 
