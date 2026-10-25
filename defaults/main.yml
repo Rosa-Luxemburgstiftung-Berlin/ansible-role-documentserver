@@ -16,6 +16,8 @@ rabbitmq_server_user: guest
 rabbitmq_server_pass: guest
 rabbitmq_server_vpath: /
 
+onlyoffice_rabbitmq_via_debconf: false
+
 jwt_enabled: true
 jwt_secret: ""
 jwt_header: ""
