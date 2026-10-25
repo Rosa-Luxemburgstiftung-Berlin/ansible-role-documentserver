@@ -22,7 +22,9 @@
     insertafter: 'location ~* ^(\/[\d]+\.[\d]+\.[\d]+[\.|-][\d]+)?\/(info)(\/.*)$ {'
     search_string: "allow"
     line: "  allow {{ ds_info_allow }};"
-  when: ds_info_allow
+  when:
+    - ds_info_allow is defined
+    - ds_info_allow | length > 0
   notify: Restart-nginx
 
 - name: Supply license file
@@ -39,5 +41,7 @@
     dest: "{{ onlyoffice_local_json_config }}"
     content: "{{ onlyoffice_local_json | to_nice_json(indent=2, sort_keys=false) }}\n"
     mode: 0644
-  when: onlyoffice_local_json
+  when:
+    - onlyoffice_local_json is defined
+    - onlyoffice_local_json | length > 0
   notify: Restart-ds
