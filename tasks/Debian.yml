@@ -210,5 +210,7 @@
         dest: "{{ onlyoffice_default_config }}"
         content: "{{ current_onlyoffice_local_json | combine(onlyoffice_local_json, recursive=true) | to_nice_json(indent=2, sort_keys=false) }}\n"
       notify: Restart-ds
-  when: onlyoffice_local_json
+  when:
+    - onlyoffice_local_json is defined
+    - onlyoffice_local_json | length > 0
 
