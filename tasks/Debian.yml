@@ -146,7 +146,7 @@
 
 - name: Install documentserver
   ansible.builtin.apt:
-    name: "{{ package_name }}"
+    name: "{{ package_name }}{{ package_version | default('') }}"
     update_cache: yes
     state: "{{ package_state }}"
 

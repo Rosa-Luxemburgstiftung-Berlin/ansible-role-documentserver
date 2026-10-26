@@ -7,6 +7,9 @@ db_server_pass: onlyoffice
 package_name: onlyoffice-documentserver
 # set this to 'present' in order to prevent upgrades
 package_state: latest
+# set this to install a defined version, for example:
+# package_version: =9.4.0-129
+package_version:
 
 redis_server_host: localhost
 redis_server_port: 6379
